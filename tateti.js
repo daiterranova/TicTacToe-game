@@ -2,7 +2,7 @@
 // un tablero
 let boardGame = new Array(9);
 
-boardGame = ['x','x','o','x',undefined,null];
+boardGame = [];
 
 
 
@@ -16,6 +16,7 @@ guardar a que jugador le toca jugar */
 
 let turn = 'x';
 
+let squares = document.getElementsByClassName('board');
 
 let whoWins = () =>{
 //chequea si alguien gano, necesita acceder a la informacion guardada en el tablero y saber de quien era el turno
@@ -41,40 +42,35 @@ let tie = (string) => {
 
 let render = (boardGame,turn) => {
     // objetivo de esta funcion : muestra la informacion del tablero a los jugadores. necesita acceder al tablero y a turno   
-        let squares = document.getElementsByClassName('board')
-
         for(let i = 0;i < squares.length;i++){
           squares[i].textContent = boardGame[i];
         }; 
-   // aca deberia poder mostrar a quien le toca jugar:
-
-    let turnElement = document.getElementById('turn').textContent = `Juega: ${turn}`;
+    
+        let turnElement = document.getElementById('turn').textContent = `Juega: ${turn}`;
     
     }
 
-
+  
 function onClick (turn,boardGame) {
     //tiene que detectar donde se hizo click en el tablero
     // y mostrar el paso siguiente,
     //si me hacen click, depende quien juega,quiero mostrar x o circulo 
-
     
-   var primerCasillero = document.getElementById('1')  ; 
-   primerCasillero. addEventListener('click',() => { 
-
-        boardGame[0] = turn;
+  for (let i = 0; i < squares.length; i++) {
+      //queremos que cuando se haga click en tal casillero, si ese casillero esta vacio, asigne 'x' u 'o' dependiendo de quien sea el turno.
+        squares[i].addEventListener('click',() => { 
+                if (squares[i].textContent == "") {
+                boardGame[i] = turn;
+                if (turn == "x") {
+                    turn = "o";
+                } else {
+                    turn = "x";
+                }
+                }
+                render(boardGame,turn);
+            }) 
         
-        if(turn == 'x'){ 
-            turn = 'o';
-        } else{
-            turn = 'x';
-        }
-        
-        render(boardGame,turn);
-    }) 
-
-    
-        
+        } 
     // llamar a las funciones
         // ganar 
         //todavia no estan bien implementadas, solo queria ver si funcionaban
@@ -82,7 +78,7 @@ function onClick (turn,boardGame) {
         //empate  
         tie('empate')
   
-    }
+ }
 
 onClick(turn,boardGame)
 render(boardGame,turn)
