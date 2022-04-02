@@ -1,0 +1,17 @@
+.board{
+    background-color: powderblue;
+    margin-bottom: 60px;
+}
+tr, td{
+border: 1px solid black;
+width : 50px;
+height: 50px;
+}
+#turn{
+   
+    color: blue;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    align-content: space-around;
+}
