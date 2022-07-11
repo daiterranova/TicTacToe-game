@@ -64,6 +64,7 @@ let render = () => {
     } */
     squares[i].textContent = getEmoji(boardGame[i]);
   }
+
   if (!winner && itsATie) {
     winnerBox.textContent = "Empate";
     return;
